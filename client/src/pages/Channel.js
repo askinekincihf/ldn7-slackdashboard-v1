@@ -11,6 +11,7 @@ const Channel = () => {
 	const { name, channelId } = useParams();
 	const [userList, setUserList] = useState([]);
 	const [channelData, setChannelData] = useState([]);
+	const [week, setWeek] = useState([]);
 	const [averageMessages, setAverageMessages] = useState([]);
 	const [averageReactions, setAverageReactions] = useState([]);
 	const [numberOfUsers, setNumberOfUsers] = useState(0);
@@ -41,13 +42,16 @@ const Channel = () => {
 			.then((body) => {
 				let messagesArray = [];
 				let reactionsArray = [];
+				let weekArray = [];
 				let lastTwoWeeks = body.slice(0, 2);
 				lastTwoWeeks.forEach((element) => {
 					messagesArray.push(element.total_message / numberOfUsers);
 					reactionsArray.push(element.total_reaction / numberOfUsers);
+					weekArray.push(element.week_no);
 				});
 				setAverageMessages(messagesArray);
 				setAverageReactions(reactionsArray);
+				setWeek(weekArray);
 				setChannelData(body.slice(0, 4));
 			})
 			.catch((err) => {
@@ -66,8 +70,8 @@ const Channel = () => {
 					<thead>
 						<tr className="text-center thickBottomBorder">
 							<th colSpan="2">Trainee</th>
-							<th colSpan="2">Current week</th>
-							<th colSpan="2">Previous week</th>
+							<th colSpan="2">Current week - Week {week[0]}</th>
+							<th colSpan="2">Previous week - Week {week[1]}</th>
 						</tr>
 						<tr className="thickBottomBorder">
 							<th>#</th>
@@ -114,6 +118,7 @@ const Channel = () => {
 				<SingleChannelChart
 					messagesDataSet={averageMessages}
 					reactionsDataSet={averageReactions}
+					label={week.map((week) => `Week ${week}`)}
 				/>
 			</div>
 			<Footer />
