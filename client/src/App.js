@@ -6,6 +6,7 @@ import Channels from "./pages/Channels";
 import Channel from "../src/pages/Channel";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
+import "bootstrap/dist/css/bootstrap.min.css";
 //import useToken from "./pages/useToken";
 
 const App = () => {
