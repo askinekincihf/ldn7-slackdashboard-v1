@@ -12,10 +12,10 @@ const slackWorkspace = "https://ldn7-test-workspace.slack.com";
 const users = [];
 const loginRequired = (req, res, next) => {
 	if (!req.session.userId) {
-		return res.status(403).json({ message: " you should login first" });
+		return res.status(403).json({ message: "You should login first" });
 	}
 	const user = users.includes(req.session.userId);
-	if (!user) return res.status(404).json({ message: "user not found" });
+	if (!user) return res.status(404).json({ message: "User not found" });
 	req.user = req.session.userId;
 	next();
 };
@@ -24,7 +24,7 @@ router.post("/login", (req, res) => {
 	const { name = "", password = "" } = req.body;
 	//const user = users.find((user) => user.password === password);
 	const isLogin = password === process.env.LOGIN_PASS;
-	if (!isLogin) return res.status(401).json({ message: "user not allowed" });
+	if (!isLogin) return res.status(401).json({ message: "User not allowed" });
 	req.session.userId = name;
 	users.push(name);
 	res.json({ token: true });
@@ -169,6 +169,7 @@ router.post("/dailyStatistic", loginRequired, async (req, res) => {
 			).setHours(0, 0, 0, 0)
 		) / 1000;
 	const messageInfo = await fetchAllData(startDate); // All Data/messages for 3 weeks (unsorted)
+	console.log(messageInfo);
 	const reactionData = FetchReactionData(messageInfo); // reactions (unsorted)
 	messageInfo.push(reactionData); // messages + reaction (unsorted)
 	const info = [].concat.apply([], messageInfo); // messages + reaction (sorted)
@@ -178,6 +179,7 @@ router.post("/dailyStatistic", loginRequired, async (req, res) => {
 	messageInfo.push(repliesMessagesSorted);
 	messageInfo.push(repliesReaction);
 	const result = [].concat.apply([], messageInfo); // messages + reactions + repliesMessages + repliesReactions
+	console.log(result);
 	const aggregateStat = await aggregateData(result, numberOfDays);
 	const stat = [].concat.apply([], [].concat.apply([], aggregateStat));
 	insertDataToTable(stat);

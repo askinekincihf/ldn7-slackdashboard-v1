@@ -91,3 +91,18 @@ createdb -U <username> cyf
 psql -d cyf -U <username> -f scripts/01-init.sql
 
 ```
+
+### Testing
+
+So far we are using some simple [snapshot tests](https://jestjs.io/docs/snapshot-testing) using Jest.
+To run the tests -all tests located under the **tests** folder, run:
+
+```
+npm run test
+```
+
+The snapshot tests will warn developers if they make unintentional changes to the components or pages. If you have made intentional changes to a component, run the following to update the snapshots:
+
+```
+jest --updateSnapshots
+```

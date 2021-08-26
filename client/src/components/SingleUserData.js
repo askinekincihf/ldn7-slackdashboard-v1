@@ -1,4 +1,4 @@
-import { CompareArrowsOutlined } from "@material-ui/icons";
+// import { CompareArrowsOutlined } from "@material-ui/icons";
 import React from "react";
 import { useEffect, useState } from "react";
 import "../pages/Home.css";

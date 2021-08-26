@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SingleUserChart should render a chart for a single user correctly 1`] = `
+<div
+  className="chart"
+>
+  <canvas
+    data-testid="canvas"
+    height={150}
+    onClick={[Function]}
+    role="img"
+    width={300}
+  />
+</div>
+`;

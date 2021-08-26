@@ -2,11 +2,13 @@ import ChannelButton from "../components/Button";
 import Footer from "../components/Footer";
 import "./Home.css";
 import PropTypes from "prop-types";
+import { CohortList } from "../components/CohortList";
 
 const Home = ({ setToken }) => {
 	Home.propTypes = {
 		setToken: PropTypes.func.isRequired,
 	};
+
 	return (
 		<main>
 			<div className="introMessage">

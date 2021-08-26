@@ -2,8 +2,7 @@ import "dotenv/config";
 import express from "express";
 import morgan from "morgan";
 import path from "path";
-import session from "express-session";
-
+import cookieSession from "cookie-session";
 import router from "./api";
 import {
 	configuredHelmet,
@@ -19,17 +18,10 @@ const app = express();
 
 app.use(express.json());
 app.use(
-	session({
-		store: new (require("connect-pg-simple")(session))(),
-		secret: process.env.SESSION_SECRET,
-		resave: false,
-		saveUninitialized: false,
-		cookie: {
-			httpOnly: true,
-			secure: false,
-			sameSite: "strict",
-			maxAge: 1000 * 60 * 60,
-		},
+	cookieSession({
+		name: "session",
+		keys: [process.env.SESSION_SECRET],
+		maxAge: 1000 * 60 * 60,
 	})
 );
 app.use(configuredHelmet());

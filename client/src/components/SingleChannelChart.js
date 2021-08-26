@@ -1,9 +1,11 @@
-import { Bar } from "react-chartjs-2";
+import { Bar, defaults } from "react-chartjs-2";
+
+defaults.font.family = "Varela Round";
 
 const SingleChannelChart = (props) => {
 	const state = {
 		data: {
-			labels: props.label,
+			labels: ["Current Week", "Previous Week"],
 			datasets: [
 				{
 					label: "Messages",
@@ -28,14 +30,19 @@ const SingleChannelChart = (props) => {
 		},
 	};
 	const options = {
-		responsive: true,
+		// responsive: true,
+		maintainAspectRatio: true,
+		aspectRatio: 2,
 		legend: {
+			labels: {
+				fontSize: 10,
+			},
 			display: false,
 		},
 		type: "bar",
 	};
 	return (
-		<div className="chart">
+		<div className="singleChannelChart">
 			<Bar data={state.data} options={options} />
 		</div>
 	);

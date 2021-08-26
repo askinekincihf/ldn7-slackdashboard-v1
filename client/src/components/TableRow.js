@@ -16,6 +16,7 @@ const TableRow = ({ channel }) => {
 				<Link
 					style={{
 						textDecoration: "none",
+						textTransform: "capitalize",
 						color: "black",
 						fontWeight: "lighter",
 					}}

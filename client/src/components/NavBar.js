@@ -26,7 +26,7 @@ const NavBar = () => {
 				<Collapse isOpen={!collapsed} navbar className="collapsedItems">
 					<Nav navbar>
 						<NavItem>
-							<NavLink href="/components/">Login</NavLink>
+							<NavLink href="https://codeyourfuture.io/">More</NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink href="https://codeyourfuture.io/about/">Contact</NavLink>

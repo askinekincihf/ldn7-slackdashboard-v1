@@ -1,5 +1,7 @@
 /* ALL FRONT END */
 
+@import url("https://fonts.googleapis.com/css?family=Varela+Round");
+
 * {
 	font-family: "Varela Round", serif;
 	box-sizing: border-box;
@@ -7,8 +9,7 @@
 
 body {
 	min-height: 200px;
-	margin-bottom: 50px;
-	clear: both;
+	width: 100%;
 }
 
 /* NAVBAR */
@@ -16,13 +17,14 @@ body {
 .navbar {
 	width: 100%;
 	padding: 10px;
-	margin-bottom: 40px;
+	margin-bottom: 30px;
 	right: 0;
 	left: 0;
 }
 
 .nav-item {
 	text-align: center;
+	font-family: "Varela Round", serif;
 }
 
 .cyf_logo {
@@ -34,83 +36,44 @@ body {
 
 .introMessage {
 	width: 80%;
-	border-radius: 10px;
 	border: solid 3px #eef0ee;
 	border-radius: 40px;
-	margin: 100px auto 30px auto;
-	padding: 50px;
-	display: flex;
-	flex-direction: column;
+	margin: 0 auto;
+	padding: 40px 20px;
 	text-align: center;
 }
 
 .introMessage h3 {
 	font-weight: 1000;
+	font-size: 17.5px;
 	margin-bottom: 30px;
 }
+
 .introMessage h4 {
 	font-weight: lighter;
+	font-size: 14px;
 	margin-top: 30px;
 }
 
 /* BUTTON ON HOME PAGE */
 
-.linkButtons,
-.linkButtons {
-	width: 200px;
-	height: 50px;
-	margin: 5px auto 20px auto;
-	border-radius: 10px;
-	border: solid 2px #0a5503;
-	font-size: 25px;
-	text-align: center;
-}
-
-.linkButtons:hover,
-.linkButtons button:hover {
-	background-color: #b1f778e3;
-	color: #0a5503;
-}
-
-.blueButton {
-	background-color: #1ac00b;
-	font-size: 1.2rem;
-}
-
-/* */
-
-.username {
-	width: 100%;
-	text-align: center;
-	font-size: 50px;
-}
-
-.userDetails {
-	width: 90%;
+.getStartedButton {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	margin: 0px 10px 30px 10px;
+	align-items: center;
+	width: 50%;
+	height: 50px;
+	margin: 30px auto;
+	border-radius: 20px;
+	border: solid 2px #0e6506;
+	background-color: #0e6506;
+	font-size: 1rem;
 }
 
-.userStats {
-	font-size: 28px;
-	font-family: "Nunito", sans-serif;
-	padding-top: 10px;
-}
-
-.profilePic {
-	height: 200px;
-	padding: 20px;
-}
-
-/* CHART */
-
-.chart {
-	width: 60%;
-	margin-top: 5%;
-	margin-left: 20%;
-	margin-bottom: 10%;
+.getStartedButton:hover {
+	background-color: #b1f778e3;
+	color: #0a5503;
 }
 
 /* CHANNELS PAGE */
@@ -131,7 +94,9 @@ body {
 
 .table {
 	margin: auto;
+	/* margin-top: 30px; */
 	width: 80%;
+	max-width: 80%;
 }
 
 .table th {
@@ -145,27 +110,73 @@ body {
 }
 
 .arrow {
-	width: 15px;
+	width: 10px;
 	height: auto;
 }
 
 /* TABLE ON SINGLE CHANNEL PAGE */
 
+.chanelTableContainer {
+	margin: 0px 20px 10px 20px;
+}
+
 .channelTable {
-	margin-top: 20px;
+	margin: 15px auto;
 }
 
 .thickBottomBorder {
 	border-bottom: solid 2px black;
 }
 
+/* CHARTS */
+
+.singleUserChart {
+	width: 80%;
+	height: 500px;
+	margin: 20px auto;
+}
+
+.singleChannelChart {
+	display: flex;
+	width: 70%;
+	margin: 15px auto;
+	padding-bottom: 30px;
+}
+
 /* SINGLE USER DATA */
+
 .red {
 	color: red;
 }
 
 .green {
 	color: green;
+}
+
+/* USERS */
+
+.username {
+	width: 100%;
+	text-align: center;
+	font-size: 50px;
+}
+
+.userDetails {
+	width: 90%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 0px 10px 30px 10px;
+}
+
+.userStats {
+	font-size: 28px;
+	padding-top: 10px;
+}
+
+.profilePic {
+	height: 200px;
+	padding: 20px;
 }
 
 /* FOOTER */
@@ -176,8 +187,9 @@ body {
 	text-align: center;
 	padding: 5px;
 	background-color: #080808;
-	margin-top: 1rem;
+	font-family: "Varela Round", serif;
 	position: fixed;
+	margin-top: 100px;
 	bottom: 0;
 	left: 0;
 	width: 100%;
@@ -191,3 +203,223 @@ body {
 	font-size: 25px;
 	text-align: center;
 } */
+
+/* MEDIA QUERIES */
+
+@media (min-width: 320px) {
+	/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+
+	/* HOME PAGE */
+
+	.introMessage {
+		margin-top: 60px;
+		padding: 45px 25px;
+	}
+
+	.introMessage h3 {
+		font-size: 18px;
+	}
+
+	.introMessage h4 {
+		font-size: 15px;
+	}
+
+	/* BUTTON ON HOME PAGE */
+
+	.getStartedButton {
+		margin-top: 40px;
+		width: 55%;
+		font-size: 1.1rem;
+	}
+}
+
+@media (min-width: 480px) {
+	/* smartphones, Android phones, landscape iPhone */
+
+	/* HOME PAGE */
+
+	.introMessage {
+		margin-top: 70px;
+		padding: 50px;
+	}
+
+	.introMessage h3 {
+		font-size: 20px;
+	}
+
+	.introMessage h4 {
+		font-size: 17px;
+	}
+
+	/* BUTTON ON HOME PAGE */
+
+	.getStartedButton {
+		margin-top: 50px;
+		width: 60%;
+		font-size: 1.2rem;
+	}
+
+	/* TABLE ON CHANNELS PAGE */
+
+	.arrow {
+		width: 15px;
+		height: auto;
+	}
+}
+
+@media (min-width: 600px) {
+	/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+
+	/* HOME PAGE */
+
+	.introMessage {
+		margin-top: 80px;
+		padding: 55px;
+	}
+
+	.introMessage h3 {
+		font-size: 21px;
+	}
+
+	.introMessage h4 {
+		font-size: 18px;
+	}
+
+	/* BUTTON ON HOME PAGE */
+
+	.getStartedButton {
+		margin-top: 60px;
+		font-size: 1.3rem;
+	}
+
+	/* CHARTS */
+
+	.singleUserChart {
+		width: 80%;
+		/* height: auto; */
+		margin: 20px auto;
+		padding-bottom: 30px;
+	}
+}
+
+@media (min-width: 801px) {
+	/* tablet, landscape iPad, lo-res laptops ands desktops */
+
+	/* HOME PAGE */
+
+	.introMessage {
+		margin-top: 90px;
+		padding: 57px;
+	}
+
+	.introMessage h3 {
+		font-size: 22px;
+	}
+
+	.introMessage h4 {
+		font-size: 19px;
+	}
+
+	/* BUTTON ON HOME PAGE */
+
+	.getStartedButton {
+		margin-top: 70px;
+		font-size: 1.4rem;
+	}
+}
+
+@media (min-width: 1025px) {
+	/* big landscape tablets, laptops, and desktops */
+
+	/* HOME PAGE */
+
+	.introMessage {
+		margin-top: 100px;
+		padding: 58px;
+	}
+
+	.introMessage h3 {
+		font-size: 23px;
+	}
+
+	.introMessage h4 {
+		font-size: 20px;
+	}
+
+	/* BUTTON ON HOME PAGE */
+
+	.getStartedButton {
+		margin-top: 80px;
+		font-size: 1.5rem;
+	}
+}
+@media (min-width: 1281px) {
+	/* hi-res laptops and desktops */
+
+	/* HOME PAGE */
+
+	.introMessage {
+		margin-top: 110px;
+		padding: 60px;
+	}
+
+	.introMessage h3 {
+		font-size: 25px;
+	}
+
+	.introMessage h4 {
+		font-size: 22px;
+	}
+
+	/* BUTTON ON HOME PAGE */
+
+	.getStartedButton {
+		margin-top: 90px;
+		font-size: 1.6rem;
+	}
+
+	/* TABLE ON CHANNELS PAGE */
+
+	.table {
+		width: 50%;
+	}
+
+	/* CHARTS */
+
+	.singleUserChart {
+		width: 60%;
+		margin: 20px auto;
+	}
+
+	.singleChannelChart {
+		width: 60%;
+		margin: 15px auto;
+		padding-bottom: 50px;
+	}
+}
+
+@media (min-width: 1781px) {
+	/* extra large hi-res laptops and desktops */
+
+	/* HOME PAGE */
+
+	.introMessage {
+		margin-top: 120px;
+		padding: 60px;
+	}
+
+	.introMessage h3 {
+		font-size: 25px;
+	}
+
+	.introMessage h4 {
+		font-size: 22px;
+	}
+
+	/* BUTTON ON HOME PAGE */
+
+	.getStartedButton {
+		margin-top: 100px;
+		font-size: 1.6rem;
+	}
+}

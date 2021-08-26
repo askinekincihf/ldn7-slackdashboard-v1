@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableHead should render table head correctly 1`] = `
+<tr
+  className="p-5"
+>
+  <th>
+    <img
+      alt="Slack logo"
+      className="slack_logo"
+      src="test-file-stub"
+    />
+     Channel name
+  </th>
+  <th>
+    <img
+      alt="Users icon"
+      className="users_icon"
+      src="test-file-stub"
+    />
+    No. of users
+  </th>
+</tr>
+`;

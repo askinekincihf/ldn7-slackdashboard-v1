@@ -55,10 +55,10 @@ const Login = ({ setToken }) => {
 		<>
 			<form
 				name="loginForm"
-				className="mx-auto "
+				className="mx-auto"
 				onSubmit={(e) => handleSubmit(e)}
 			>
-				<div className=" login-group ">
+				<div className="login-group">
 					<div className="input-group my-5 ">
 						<div className="input-group-prepend">
 							<span className="span-text" id="basic-addon1">
@@ -91,7 +91,7 @@ const Login = ({ setToken }) => {
 						></input>
 					</div>
 					<div className="message">{user && <div>{user.message}</div>}</div>
-					<button type="submit" className=" blueButton text-uppercase btn">
+					<button type="submit" className="loginButton text-uppercase btn">
 						Login
 					</button>
 				</div>
