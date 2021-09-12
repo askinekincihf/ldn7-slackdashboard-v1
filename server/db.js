@@ -5,7 +5,7 @@ console.log(dbUrl);
 const pool = new Pool({
 	connectionString: dbUrl,
 	connectionTimeoutMillis: 5000,
-	ssl: { rejectUnauthorized: false },
+	ssl: dbUrl.includes("localhost") ? false : { rejectUnauthorized: false },
 });
 
 export const connectDb = async () => {
