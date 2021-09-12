@@ -5,14 +5,15 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Provider } from "react-redux";
 import store from "./pages/store";
 import App from "./App";
-import NavBar from "./components/NavBar";
+import MiniDrawerNavBar from "./components/MiniDrawerNavBar";
 
 ReactDOM.render(
 	<div>
-		<NavBar />
 		<BrowserRouter>
 			<Provider store={store}>
-				<App />
+				<MiniDrawerNavBar>
+					<App />
+				</MiniDrawerNavBar>
 			</Provider>
 		</BrowserRouter>
 	</div>,

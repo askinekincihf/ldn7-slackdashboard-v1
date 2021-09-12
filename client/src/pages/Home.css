@@ -8,61 +8,61 @@
 }
 
 body {
-	min-height: 200px;
-	width: 100%;
+	/* min-height: 200px; */
+	/* width: 100%; */
+	/* height: 100%; */
+	margin: 0;
 }
 
 /* NAVBAR */
-
-.navbar {
-	width: 100%;
-	padding: 10px;
-	margin-bottom: 30px;
-	right: 0;
-	left: 0;
-}
-
-.nav-item {
-	text-align: center;
-	font-family: "Varela Round", serif;
-}
 
 .cyf_logo {
 	width: 200px;
 	height: auto;
 }
 
+.MuiTypography-body1 {
+	font-family: "Varela Round", serif;
+}
+
 /* HOME PAGE */
 
+.homePageContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 5px;
+}
+
 .introMessage {
-	width: 80%;
+	width: 85%;
 	border: solid 3px #eef0ee;
 	border-radius: 40px;
-	margin: 0 auto;
-	padding: 40px 20px;
+	margin: 10px auto;
+	padding: 35px 20px;
 	text-align: center;
 }
 
-.introMessage h3 {
-	font-weight: 1000;
-	font-size: 17.5px;
+.introMessage h1 {
+	font-size: 17px;
 	margin-bottom: 30px;
 }
 
-.introMessage h4 {
+.introMessage h2 {
 	font-weight: lighter;
-	font-size: 14px;
+	font-size: 12px;
 	margin-top: 30px;
 }
 
 /* BUTTON ON HOME PAGE */
 
-.getStartedButton {
+/* .getStartedButton {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	width: 50%;
+	width: 100%;
 	height: 50px;
 	margin: 30px auto;
 	border-radius: 20px;
@@ -74,6 +74,75 @@ body {
 .getStartedButton:hover {
 	background-color: #b1f778e3;
 	color: #0a5503;
+} */
+
+.buttonsContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+}
+
+.userButton {
+	width: 100%;
+	height: 45px;
+	padding: 0.7em 1.4em;
+	margin: 10px;
+	border-radius: 1em;
+	font-weight: bolder;
+	color: #ffffff;
+	background-color: #3369ff;
+	box-shadow: inset 0 -0.6em 0 -0.35em rgba(158, 141, 141, 0.17);
+	text-align: center;
+}
+
+.userButton:hover {
+	background-color: #204abb;
+}
+
+.userIconBs {
+	margin-right: 5px;
+}
+
+/* COHORTS PAGE */
+
+.cohortContainer {
+	display: grid;
+	grid-auto-flow: column;
+	width: 70%;
+	margin: auto;
+}
+
+.searchCohort {
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.dividerLine {
+	margin-top: 30px;
+	width: 100%;
+	border: solid 1px #b4b6b4;
+}
+
+.cohortTitle {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.cohortCardContainer {
+	margin: 20px auto 50px auto;
+	max-width: 75%;
+}
+
+.circularProgressContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.circularProgress {
+	margin: 100px auto;
 }
 
 /* CHANNELS PAGE */
@@ -88,6 +157,14 @@ body {
 	width: 27px;
 	height: auto;
 	margin-right: 15px;
+}
+
+.allChannelsTableContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	padding-top: 100px;
 }
 
 /* TABLE ON CHANNELS PAGE */
@@ -126,6 +203,13 @@ body {
 
 .thickBottomBorder {
 	border-bottom: solid 2px black;
+}
+
+.usernameButton {
+	width: 100%;
+	text-decoration: underline dotted;
+	/* border-radius: 5px;
+	background-color: rgb(242, 210, 250); */
 }
 
 /* CHARTS */
@@ -181,18 +265,32 @@ body {
 
 /* FOOTER */
 
-.footer {
+footer {
 	display: flex;
-	flex-direction: column;
-	text-align: center;
-	padding: 5px;
-	background-color: #080808;
-	font-family: "Varela Round", serif;
+	flex-direction: row;
+	justify-content: center;
 	position: fixed;
-	margin-top: 100px;
+	margin-top: 70px;
 	bottom: 0;
 	left: 0;
 	width: 100%;
+	z-index: 100000;
+}
+
+.myFooter {
+	text-align: center;
+	padding: 5px;
+	background-color: #080808;
+	color: rgb(219, 215, 215);
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	position: fixed;
+}
+
+.myFooter span {
+	font-family: "Varela Round", serif;
+	font-size: 8px;
 }
 
 /* DROPDOWN COMPONENT FOR FUTURE RELEASES */
@@ -212,25 +310,33 @@ body {
 	/* HOME PAGE */
 
 	.introMessage {
-		margin-top: 60px;
-		padding: 45px 25px;
+		/* margin-top: 60px; */
+		padding: 25px 25px;
 	}
 
-	.introMessage h3 {
+	.introMessage h1 {
 		font-size: 18px;
 	}
 
-	.introMessage h4 {
-		font-size: 15px;
+	.introMessage h2 {
+		font-size: 13px;
 	}
 
 	/* BUTTON ON HOME PAGE */
 
-	.getStartedButton {
+	/* .getStartedButton {
 		margin-top: 40px;
 		width: 55%;
 		font-size: 1.1rem;
+	} */
+
+	.buttonsContainer {
+		width: 55%;
 	}
+
+	/* .userButton {
+		width: 95%;
+	} */
 }
 
 @media (min-width: 480px) {
@@ -239,24 +345,36 @@ body {
 	/* HOME PAGE */
 
 	.introMessage {
-		margin-top: 70px;
-		padding: 50px;
+		/* margin-top: 70px; */
+		padding: 27px;
 	}
 
-	.introMessage h3 {
-		font-size: 20px;
+	.introMessage h1 {
+		font-size: 21px;
 	}
 
-	.introMessage h4 {
-		font-size: 17px;
+	.introMessage h2 {
+		font-size: 16px;
 	}
 
 	/* BUTTON ON HOME PAGE */
 
-	.getStartedButton {
+	/* .getStartedButton {
 		margin-top: 50px;
 		width: 60%;
 		font-size: 1.2rem;
+	} */
+
+	.buttonsContainer {
+		width: 60%;
+	}
+
+	/* .userButton {
+		width: 90%;
+	} */
+
+	.userIconBs {
+		margin-right: 10px;
 	}
 
 	/* TABLE ON CHANNELS PAGE */
@@ -264,6 +382,12 @@ body {
 	.arrow {
 		width: 15px;
 		height: auto;
+	}
+
+	/* FOOTER */
+
+	.myFooter span {
+		font-size: 10px;
 	}
 }
 
@@ -273,23 +397,32 @@ body {
 	/* HOME PAGE */
 
 	.introMessage {
-		margin-top: 80px;
+		/* margin-top: 80px; */
 		padding: 55px;
 	}
 
-	.introMessage h3 {
-		font-size: 21px;
+	.introMessage h1 {
+		font-size: 23px;
 	}
 
-	.introMessage h4 {
+	.introMessage h2 {
 		font-size: 18px;
 	}
 
 	/* BUTTON ON HOME PAGE */
 
-	.getStartedButton {
+	/* .getStartedButton {
 		margin-top: 60px;
 		font-size: 1.3rem;
+	} */
+
+	.buttonsContainer {
+		flex-direction: row;
+		width: 100%;
+	}
+
+	.userButton {
+		width: 90%;
 	}
 
 	/* CHARTS */
@@ -300,6 +433,12 @@ body {
 		margin: 20px auto;
 		padding-bottom: 30px;
 	}
+
+	/* FOOTER */
+
+	.myFooter span {
+		font-size: 12px;
+	}
 }
 
 @media (min-width: 801px) {
@@ -308,23 +447,42 @@ body {
 	/* HOME PAGE */
 
 	.introMessage {
-		margin-top: 90px;
+		/* margin-top: 90px; */
 		padding: 57px;
 	}
 
-	.introMessage h3 {
-		font-size: 22px;
+	.introMessage h1 {
+		font-size: 25px;
 	}
 
-	.introMessage h4 {
-		font-size: 19px;
+	.introMessage h2 {
+		font-size: 20px;
 	}
 
 	/* BUTTON ON HOME PAGE */
 
-	.getStartedButton {
+	/* .getStartedButton {
 		margin-top: 70px;
 		font-size: 1.4rem;
+	} */
+
+	.buttonsContainer {
+		margin-top: 20px;
+	}
+
+	.userButton {
+		width: 95%;
+		margin: 25px;
+	}
+
+	.userIconBs {
+		margin-right: 20px;
+	}
+
+	/* FOOTER */
+
+	.myFooter span {
+		font-size: 14px;
 	}
 }
 
@@ -334,49 +492,56 @@ body {
 	/* HOME PAGE */
 
 	.introMessage {
-		margin-top: 100px;
+		/* margin-top: 100px; */
 		padding: 58px;
 	}
 
-	.introMessage h3 {
-		font-size: 23px;
+	.introMessage h1 {
+		font-size: 27px;
 	}
 
-	.introMessage h4 {
-		font-size: 20px;
+	.introMessage h2 {
+		font-size: 22px;
 	}
 
 	/* BUTTON ON HOME PAGE */
 
-	.getStartedButton {
+	/* .getStartedButton {
 		margin-top: 80px;
 		font-size: 1.5rem;
+	} */
+
+	/* FOOTER */
+
+	.myFooter span {
+		font-size: 16px;
 	}
 }
+
 @media (min-width: 1281px) {
 	/* hi-res laptops and desktops */
 
 	/* HOME PAGE */
 
 	.introMessage {
-		margin-top: 110px;
+		/* margin-top: 110px; */
 		padding: 60px;
 	}
 
-	.introMessage h3 {
-		font-size: 25px;
+	.introMessage h1 {
+		font-size: 29px;
 	}
 
-	.introMessage h4 {
-		font-size: 22px;
+	.introMessage h2 {
+		font-size: 24px;
 	}
 
 	/* BUTTON ON HOME PAGE */
 
-	.getStartedButton {
+	/* .getStartedButton {
 		margin-top: 90px;
 		font-size: 1.6rem;
-	}
+	} */
 
 	/* TABLE ON CHANNELS PAGE */
 
@@ -396,6 +561,12 @@ body {
 		margin: 15px auto;
 		padding-bottom: 50px;
 	}
+
+	/* FOOTER */
+
+	.myFooter span {
+		font-size: 18px;
+	}
 }
 
 @media (min-width: 1781px) {
@@ -404,22 +575,28 @@ body {
 	/* HOME PAGE */
 
 	.introMessage {
-		margin-top: 120px;
+		/* margin-top: 120px; */
 		padding: 60px;
 	}
 
-	.introMessage h3 {
-		font-size: 25px;
+	.introMessage h1 {
+		font-size: 31px;
 	}
 
-	.introMessage h4 {
-		font-size: 22px;
+	.introMessage h2 {
+		font-size: 26px;
 	}
 
 	/* BUTTON ON HOME PAGE */
 
-	.getStartedButton {
+	/* .getStartedButton {
 		margin-top: 100px;
 		font-size: 1.6rem;
+	} */
+
+	/* FOOTER */
+
+	.myFooter span {
+		font-size: 20px;
 	}
 }

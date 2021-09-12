@@ -6,6 +6,7 @@ const SingleChannelChart = (props) => {
 	const state = {
 		data: {
 			labels: ["Current Week", "Previous Week"],
+			// labels: ["Previous Week", "Current Week"],
 			datasets: [
 				{
 					label: "Messages",
@@ -16,7 +17,6 @@ const SingleChannelChart = (props) => {
 					hoverBorderColor: "#003f5c",
 					data: props.messagesDataSet,
 				},
-
 				{
 					label: "Reactions",
 					backgroundColor: "#ff6361",

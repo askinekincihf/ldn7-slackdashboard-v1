@@ -1,4 +1,3 @@
-// import { CompareArrowsOutlined } from "@material-ui/icons";
 import React from "react";
 import { useEffect, useState } from "react";
 import "../pages/Home.css";
@@ -10,7 +9,7 @@ const SingleUserData = ({
 	averageReactions,
 }) => {
 	const [userData, setUserData] = useState(null);
-
+	console.log("channelId", userId, channelId);
 	useEffect(() => {
 		fetch(`/api/userSum/${channelId}/${userId}`)
 			.then((res) => {
@@ -27,39 +26,39 @@ const SingleUserData = ({
 			});
 	}, [channelId, userId]);
 
-	return (
-		userData && (
-			<>
-				<td
-					className={
-						userData[0].total_message < averageMessages[0] ? "red" : "green"
-					}
-				>
-					{userData[0].total_message}
-				</td>
-				<td
-					className={
-						userData[0].total_reaction < averageReactions[0] ? "red" : "green"
-					}
-				>
-					{userData[0].total_reaction}
-				</td>
-				<td
-					className={
-						userData[1].total_message < averageMessages[1] ? "red" : "green"
-					}
-				>
-					{userData[1].total_message}
-				</td>
-				<td
-					className={
-						userData[1].total_reaction < averageReactions[1] ? "red" : "green"
-					}
-				>
-					{userData[1].total_reaction}
-				</td>
-			</>
-		)
+	return userData && userData.length > 0 ? (
+		<>
+			<td
+				className={
+					userData[0].total_message < averageMessages[0] ? "red" : "green"
+				}
+			>
+				{userData[0].total_message}
+			</td>
+			<td
+				className={
+					userData[0].total_reaction < averageReactions[0] ? "red" : "green"
+				}
+			>
+				{userData[0].total_reaction}
+			</td>
+			<td
+				className={
+					userData[1].total_message < averageMessages[1] ? "red" : "green"
+				}
+			>
+				{userData[1].total_message}
+			</td>
+			<td
+				className={
+					userData[1].total_reaction < averageReactions[1] ? "red" : "green"
+				}
+			>
+				{userData[1].total_reaction}
+			</td>
+		</>
+	) : (
+		<span>No data found for this user</span>
 	);
 };
 

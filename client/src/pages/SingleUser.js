@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import SingleUserChart from "../components/SingleUserChart";
-import Footer from "../components/Footer";
 import "./Home.css";
-import notFound from "../images/unknown_profile.png";
+// import notFound from "../images/unknown_profile.png";
 import {
 	getWeeklyMessageAverage,
 	getWeeklyReactionAverage,
@@ -68,7 +67,6 @@ const SingleUser = () => {
 					/>
 				) : null}
 			</div>
-			<Footer />
 		</main>
 	);
 };

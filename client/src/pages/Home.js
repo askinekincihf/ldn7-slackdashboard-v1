@@ -1,26 +1,28 @@
-import ChannelButton from "../components/Button";
-import Footer from "../components/Footer";
+// import ChannelButton from "../components/Button";
+import HomeUserButtons from "../components/HomeUserButtons";
 import "./Home.css";
 import PropTypes from "prop-types";
-import { CohortList } from "../components/CohortList";
 
 const Home = ({ setToken }) => {
 	Home.propTypes = {
 		setToken: PropTypes.func.isRequired,
 	};
-
 	return (
-		<main>
+		<div className="homePageContainer">
 			<div className="introMessage">
-				<h3>Hi there, welcome to CYF Slacktastic dashboard!</h3>
-				<h4>
+				<h1>Hi there, welcome to CYF Slacktastic dashboard!</h1>
+				<h2>
 					This site allows you to access all sorts of stats about the Code Your
 					Future slack channels and users.
-				</h4>
+				</h2>
 			</div>
-			<ChannelButton setToken={setToken} />
-			<Footer />
-		</main>
+			{/* <ChannelButton setToken={setToken} /> */}
+			<div className="buttonsContainer">
+				<HomeUserButtons content="Admin" setToken={setToken} />
+				<HomeUserButtons content="Mentor" setToken={setToken} />
+				<HomeUserButtons content="Trainee" setToken={setToken} />
+			</div>
+		</div>
 	);
 };
 export default Home;

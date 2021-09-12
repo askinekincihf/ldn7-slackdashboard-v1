@@ -3,6 +3,7 @@ import process from "process";
 import pool from "./db";
 import "dotenv/config";
 import format from "pg-format";
+import bcrypt from "bcrypt";
 
 const router = new Router();
 const axios = require("axios");
@@ -21,13 +22,118 @@ const loginRequired = (req, res, next) => {
 };
 
 router.post("/login", (req, res) => {
-	const { name = "", password = "" } = req.body;
+	const { email = "", password = "" } = req.body;
 	//const user = users.find((user) => user.password === password);
 	const isLogin = password === process.env.LOGIN_PASS;
-	if (!isLogin) return res.status(401).json({ message: "User not allowed" });
-	req.session.userId = name;
-	users.push(name);
-	res.json({ token: true });
+	if (!(email && password)) {
+		return res.status(400).send({ error: "Data not formatted properly" });
+	}
+	//const isLogin = password === process.env.LOGIN_PASS;
+	const query = `select * from users where email='${email}' and status='3' `;
+	pool.query(query, async (db_err, db_res) => {
+		if (db_err) {
+			res.status(400).send(JSON.stringify(db_err));
+		} else {
+			if (db_res.rows.length == 0) {
+				res.status(404).json({ message: "This user is not exists" });
+			} else {
+				const hash = db_res.rows[0].password;
+				const resultCompare = await bcrypt.compare(password, hash);
+				if (resultCompare) {
+					req.session.userId = email;
+					users.push(email);
+					res.json({
+						name: db_res.rows[0].user_name,
+						userId: db_res.rows[0].user_id,
+						role: db_res.rows[0].role,
+					});
+				} else if (!resultCompare) {
+					res.status(403).json({ message: "user not allowed" });
+				}
+			}
+		}
+	});
+});
+
+router.get("/request", (req, res) => {
+	const query = `select user_id,user_name,role,email,status from users where user_id!='Admin' order by status asc`;
+	pool.query(query, (db_err, db_res) => {
+		if (db_err) {
+			res.send(JSON.stringify(db_err));
+		} else {
+			res.json(db_res.rows);
+		}
+	});
+});
+
+router.put("/approve", (req, res) => {
+	const { email = "", status = "" } = req.body;
+	const query = ` update users set status='${status}' where email='${email}';`;
+	pool.query(query, (db_err, db_res) => {
+		if (db_err) {
+			res.status(400).send(JSON.stringify(db_err));
+		} else {
+			res.json({ message: "Done" });
+		}
+	});
+});
+
+router.post("/signUp", async (req, res) => {
+	const { name = "", userId = "", email = "", password = "" } = req.body;
+	console.log("name", name, "userId:", userId, password, email);
+	if (!(name && password && email && userId)) {
+		return res.status(400).send({ error: "Data not formatted properly" });
+	}
+	const salt = await bcrypt.genSalt(10);
+	const hashPassword = await bcrypt.hash(password, salt);
+	if (userId !== "mentor") {
+		const query = `select * from users where user_id='${userId}' or email='${email}'`;
+		pool.query(query, (db_err, db_res) => {
+			if (db_err) {
+				res.status(400).send(JSON.stringify(db_err));
+			} else {
+				if (db_res.rows.length !== 0) {
+					res.status(403).json({ message: "This user already exists" });
+				} else {
+					const query = `INSERT INTO users  VALUES ('${userId}','${name}', '1'  , '${hashPassword}' , '${email}' , '1' )`;
+
+					pool.query(query, (db_err, db_res) => {
+						if (db_err) {
+							res.status(400).send(JSON.stringify(db_err));
+						} else {
+							req.session.userId = name;
+							users.push(name);
+							res.json({ message: "Done" });
+						}
+					});
+				}
+			}
+		});
+	} else {
+		const query = `select * from users where email='${email}'`;
+		pool.query(query, (db_err, db_res) => {
+			if (db_err) {
+				res.status(400).send(JSON.stringify(db_err));
+			} else {
+				if (db_res.rows.length !== 0) {
+					res.status(403).json({ message: "This mentor already exists" });
+				} else {
+					const query = `INSERT INTO users  VALUES ('mentor','${name}', '2'  , '${hashPassword}' , '${email}' , '1')`;
+
+					pool.query(query, (db_err, db_res) => {
+						if (db_err) {
+							res.status(400).send(JSON.stringify(db_err));
+						} else {
+							req.session.userId = name;
+							users.push(name);
+							console.log("session", req.session.userId, "name", users);
+							res.json({ message: "Done" });
+						}
+					});
+				}
+			}
+		});
+	}
 });
 
 router.get("/profile", loginRequired, (req, res) => {
@@ -132,6 +238,7 @@ router.get("/userList", loginRequired, async (req, res) => {
 
 const fetchAllData = async (startDate) => {
 	const channelList = await getChannelList();
+	console.log("fetchAllData", channelList);
 	const result = channelList.channels.map(async (channel) => {
 		const channelId = channel.id;
 		const data = await getChannelHistory(channel.id, startDate, " ");
@@ -159,7 +266,7 @@ const fetchAllData = async (startDate) => {
 	return Promise.all(result);
 };
 
-router.post("/dailyStatistic", loginRequired, async (req, res) => {
+router.post("/dailyStatistic", async (req, res) => {
 	const startDateString = req.query.date || new Date();
 	const numberOfDays = req.query.days || 1;
 	let startDate =
@@ -169,7 +276,7 @@ router.post("/dailyStatistic", loginRequired, async (req, res) => {
 			).setHours(0, 0, 0, 0)
 		) / 1000;
 	const messageInfo = await fetchAllData(startDate); // All Data/messages for 3 weeks (unsorted)
-	console.log(messageInfo);
+	// console.log(messageInfo);
 	const reactionData = FetchReactionData(messageInfo); // reactions (unsorted)
 	messageInfo.push(reactionData); // messages + reaction (unsorted)
 	const info = [].concat.apply([], messageInfo); // messages + reaction (sorted)
@@ -179,7 +286,7 @@ router.post("/dailyStatistic", loginRequired, async (req, res) => {
 	messageInfo.push(repliesMessagesSorted);
 	messageInfo.push(repliesReaction);
 	const result = [].concat.apply([], messageInfo); // messages + reactions + repliesMessages + repliesReactions
-	console.log(result);
+	// console.log(result);
 	const aggregateStat = await aggregateData(result, numberOfDays);
 	const stat = [].concat.apply([], [].concat.apply([], aggregateStat));
 	insertDataToTable(stat);
@@ -391,11 +498,36 @@ router.get("/channelSum/:channelId", loginRequired, (req, res) => {
 	});
 });
 
-router.get("/userSum/:channelId/:userId", loginRequired, (req, res) => {
+router.get("/userSum/:channelId/:userId", (req, res) => {
 	const channelId = req.params.channelId;
 	const userId = req.params.userId;
 
 	const query = `SELECT DATE_PART('week', date) week_no, channel_id, user_id, SUM(message_count) AS total_message, SUM(reaction_count) AS total_reaction FROM messages WHERE channel_id = '${channelId}' AND user_id = '${userId}'  GROUP BY user_id, channel_id, week_no ORDER by week_no DESC`;
+	console.log(query);
+	pool.query(query, (db_err, db_res) => {
+		if (db_err) {
+			res.send(JSON.stringify(db_err));
+		} else {
+			res.json(db_res.rows);
+		}
+	});
+});
+
+router.get("/channels/:cohortId", loginRequired, (req, res) => {
+	const cohortId = req.params.cohortId;
+	const query = `SELECT ChannelList.channel_name, ChannelList.channel_id FROM ChannelList INNER JOIN CohortList ON CohortList.id::varchar = ChannelList.cohort_id WHERE CohortList.id = ${cohortId}`;
+
+	pool.query(query, (db_err, db_res) => {
+		if (db_err) {
+			res.send(JSON.stringify(db_err));
+		} else {
+			res.json(db_res.rows);
+		}
+	});
+});
+
+router.get("/cohortList", loginRequired, (req, res) => {
+	const query = "SELECT * FROM CohortList";
 
 	pool.query(query, (db_err, db_res) => {
 		if (db_err) {

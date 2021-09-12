@@ -1,0 +1,44 @@
+{
+	"London": [
+		{
+			"channelName": "london-class-7",
+			"channelId": "C01F7MF2FM2"
+		}
+	],
+	"Scotland": [
+		{
+			"channelName": "scotland-class-5",
+			"channelId": "C01SJ37VCTZ"
+		}
+	],
+	"West Midlands": [
+		{
+			"channelName": "westmidlands-class-3",
+			"channelId": "C025S75QZ38"
+		}
+	],
+	"Glasgow": [
+		{
+			"channelName": "glasgow-class-2",
+			"channelId": "C01V4EULPTM"
+		}
+	],
+	"North West": [
+		{
+			"channelName": "north-west-class-4",
+			"channelId": "C01V4EULPTM"
+		}
+	],
+	"South Africa": [
+		{
+			"channelName": "southafrica-1",
+			"channelId": "CD6TBFHU4"
+		}
+	],
+	"Rome": [
+		{
+			"channelName": "rome-class-1",
+			"channelId": "CJ9GCMEN8"
+		}
+	]
+}

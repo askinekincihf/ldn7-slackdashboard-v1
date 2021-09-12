@@ -2,7 +2,7 @@
 
 exports[`SingleUserChart should render a chart for a single channel correctly 1`] = `
 <div
-  className="chart"
+  className="singleChannelChart"
 >
   <canvas
     data-testid="canvas"

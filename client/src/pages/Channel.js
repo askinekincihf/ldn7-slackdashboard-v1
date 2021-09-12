@@ -5,7 +5,6 @@ import SingleChannelChart from "../components/SingleChannelChart";
 import SingleUserData from "../components/SingleUserData";
 import slack_logo from "../images/slack_logo.png";
 import "./Home.css";
-import Footer from "../components/Footer";
 
 const Channel = () => {
 	const { name, channelId } = useParams();
@@ -54,7 +53,7 @@ const Channel = () => {
 				console.error(err);
 			});
 	}, [channelId, numberOfUsers]);
-
+	console.log(channelData);
 	return (
 		<main>
 			<div>
@@ -69,6 +68,8 @@ const Channel = () => {
 								<th colSpan="2">Trainee</th>
 								<th colSpan="2">Current week</th>
 								<th colSpan="2">Previous week</th>
+								{/* <th colSpan="2">Previous week</th>
+								<th colSpan="2">Current week</th> */}
 							</tr>
 							<tr className="thickBottomBorder">
 								<th>#</th>
@@ -83,7 +84,7 @@ const Channel = () => {
 							{userList.map((user, index) => (
 								<tr key={index}>
 									<th scope="row">{index + 1}</th>
-									<td>
+									<td className="usernameButton">
 										<Link
 											style={{
 												textDecoration: "none",
@@ -99,6 +100,8 @@ const Channel = () => {
 												},
 											}}
 										>
+											{/* <button className="usernameButton">{user.real_name}</button>
+											 */}
 											{user.real_name}
 										</Link>
 									</td>
@@ -108,6 +111,7 @@ const Channel = () => {
 										averageMessages={averageMessages}
 										averageReactions={averageReactions}
 									/>
+									{/* {console.log(user.id)} */}
 								</tr>
 							))}
 						</tbody>
@@ -120,7 +124,6 @@ const Channel = () => {
 					reactionsDataSet={averageReactions}
 				/>
 			</div>
-			<Footer />
 		</main>
 	);
 };
